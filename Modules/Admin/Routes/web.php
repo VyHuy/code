@@ -18,10 +18,15 @@ use Modules\Admin\Http\Controllers\ProductController;
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.home');
-//    Route::get('/', 'ProductController@index');
-//    Route::get('/products', 'ProductController@index');
-//    Route::get('/products/store', 'ProductController@store')->name('products.create');
-//    Route::get('/products/edit/{id}', 'ProductController@edit')->name('products.edit');
-//    Route::get('/products/delete', 'ProductController@destroy')->name('products.delete');
-    Route::resource('products', ProductController::class);
+    Route::get('/products', 'ProductController@index')->name('products.index');
+    Route::get('/products/create', 'ProductController@create')->name('products.create');
+    Route::post('/products/create', 'ProductController@store');
+    Route::get('/products/edit/{id}', 'ProductController@edit')->name('products.edit');
+    Route::post('/products/edit/{id}', 'ProductController@update');
+    Route::delete('/products/{id}', 'ProductController@destroy')->name('products.destroy');
+
+    Route::get('/login', 'Logincontroller@show')->name('admin.show')->middleware('CheckLogin');
+    Route::post('/login', 'Logincontroller@login')->name('admin.login');
+    Route::get('/logout', 'Logincontroller@logout')->name('admin.logout');
+//    Route::resource('products', ProductController::class);
 });

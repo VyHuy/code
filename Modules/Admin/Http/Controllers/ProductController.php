@@ -3,6 +3,7 @@
 namespace Modules\Admin\Http\Controllers;
 
 
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -42,6 +43,7 @@ class ProductController extends Controller
      */
     public function create(): View
     {
+        $category = Category::all();
         return view('admin::product.add');
     }
 

@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Contracts\Services;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -38,4 +39,10 @@ interface ProductService
      * @return void
      */
     public function destroy(int $id): void;
+
+    /**
+     * @param Request $request
+     * @return Category
+     */
+    public function category(Request $request): Category;
 }
