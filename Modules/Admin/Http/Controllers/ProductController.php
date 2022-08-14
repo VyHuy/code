@@ -34,7 +34,7 @@ class ProductController extends Controller
     {
         $products = $this->productService->getAll();
 
-        return view('admin::product.all', ['products' => $products]);
+        return view('admin::product.index', ['products' => $products]);
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function create(): View
     {
         $category = Category::all();
-        return view('admin::product.add');
+        return view('admin::product.create');
     }
 
     /**

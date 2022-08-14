@@ -1,126 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<body>
-<style>
-    @import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+@extends('admin::dashboard.base')
+@section('title', 'Tomosia')
 
-    *, *:before, *:after {
-        box-sizing: border-box;
-    }
-
-    body {
-        min-height: 100vh;
-        font-family: "Raleway", sans-serif;
-    }
-
-    .container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .container:hover .top:before, .container:hover .top:after, .container:hover .bottom:before, .container:hover .bottom:after, .container:active .top:before, .container:active .top:after, .container:active .bottom:before, .container:active .bottom:after {
-        margin-left: 200px;
-        transform-origin: -200px 50%;
-        transition-delay: 0s;
-    }
-
-    .container:hover .center, .container:active .center {
-        opacity: 1;
-        transition-delay: 0.2s;
-    }
-
-    .top:before, .top:after, .bottom:before, .bottom:after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 200vmax;
-        height: 200vmax;
-        top: 50%;
-        left: 50%;
-        margin-top: -100vmax;
-        transform-origin: 0 50%;
-        transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
-        z-index: 10;
-        opacity: 0.65;
-        transition-delay: 0.2s;
-    }
-
-    .top:before {
-        transform: rotate(45deg);
-        background: #e46569;
-    }
-
-    .top:after {
-        transform: rotate(135deg);
-        background: #ecaf81;
-    }
-
-    .bottom:before {
-        transform: rotate(-45deg);
-        background: #60b8d4;
-    }
-
-    .bottom:after {
-        transform: rotate(-135deg);
-        background: #3745b5;
-    }
-
-    .center {
-        position: absolute;
-        width: 400px;
-        height: 400px;
-        top: 50%;
-        left: 50%;
-        margin-left: -200px;
-        margin-top: -200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-        opacity: 0;
-        transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
-        transition-delay: 0s;
-        color: #333;
-    }
-
-    .center input {
-        width: 100%;
-        padding: 15px;
-        margin: 5px;
-        border-radius: 1px;
-        border: 1px solid #ccc;
-        font-family: inherit;
-    }
-
-    input.btn-submit {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 20px;
-    }
-
-</style>
-<div class="container" onclick="onclick">
-    <div class="top"></div>
-    <div class="bottom"></div>
-    <form class="center" method="POST" action="{{ route('admin.login') }}">
-        <h2>Impress Login Admin</h2>
-        <input type="text" name="email" placeholder="email"/>
-        <input type="password" name="password" placeholder="password"/>
+@section('headerText','Đăng nhập')
+@section('content')
+    <form method="POST" action="{{route('admin.login')}}">
         @csrf
-        <input class="btn-submit" type="submit" value="Login" name="login">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                   value="{{old('email')}}">
+        </div>
+        @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                   value="{{old('password')}}">
+        </div>
+        @error('password')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <button type="submit" class="btn btn-primary" name="login">Submit</button>
     </form>
-</div>
-</body>
-</html>
-
+    {{--            <div class="card-group d-block d-md-flex row">--}}
+    {{--                <div class="card col-md-7 p-4 mb-0">--}}
+    {{--                    <div class="card-body">--}}
+    {{--                        <div class="input-group mb-6"><span class="input-group-text"></span>--}}
+    {{--                            <input class="form-control" type="text" placeholder="Username">--}}
+    {{--                        </div>--}}
+    {{--                        <div class="input-group mb-4"><span class="input-group-text"></span>--}}
+    {{--                            <input class="form-control" type="password" placeholder="Password">--}}
+    {{--                        </div>--}}
+    {{--                        <div class="row">--}}
+    {{--                            <div class="col-6">--}}
+    {{--                                <button class="btn btn-primary px-4" type="button">Login</button>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+@endsection

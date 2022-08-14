@@ -13,7 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Admin\Http\Controllers\ProductController;
-
+use Modules\Admin\Http\Controllers\LoginController;
+use Modules\Admin\Http\Controllers\LogoutController;
 //Route::get('/login','LoginController@index')->name('login');
 
 Route::prefix('admin')->group(function () {

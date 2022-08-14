@@ -95,6 +95,10 @@ class ProductServiceImpl implements ProductService
         $this->productRepository->destroy($id);
     }
 
+    /**
+     * @param Request $request
+     * @return Category
+     */
     public function category(Request $request): Category
     {
         $category = new Category();
